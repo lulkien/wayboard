@@ -1,0 +1,7 @@
+# wayboard default config
+
+[shell]
+name = "default"
+
+[[startup]]
+command = "kitty"

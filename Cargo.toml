@@ -1,0 +1,7 @@
+[workspace]
+resolver = "3"
+members = [
+    "wayboard-core",
+    "wayboard-frontend",
+    "shells/shell-default",
+]
