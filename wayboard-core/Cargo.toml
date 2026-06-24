@@ -7,4 +7,7 @@ edition = "2024"
 git = "https://github.com/Smithay/smithay.git"
 branch = "master"
 default-features = false
-features = ["wayland_frontend"]
+features = ["wayland_frontend", "desktop"]
+
+[dependencies]
+tracing = "0.1"

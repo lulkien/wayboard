@@ -11,3 +11,5 @@ path = "src/main.rs"
 wayboard-core = { path = "../wayboard-core" }
 shell-default = { path = "../shells/shell-default" }
 smithay = { git = "https://github.com/Smithay/smithay.git", branch = "master", default-features = false, features = ["wayland_frontend"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
