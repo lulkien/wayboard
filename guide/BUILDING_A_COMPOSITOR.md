@@ -1,7 +1,7 @@
 # Building a Wayland Compositor in Rust (with Smithay)
 
 A block-by-block journey. Each block produces a **runnable** compositor.
-You build understanding incrementally — no "video coding" where you type
+You build understanding incrementally — no "vibe coding" where you type
 lines you don't understand.
 
 ## Project Structure (your design, preserved)
@@ -35,18 +35,18 @@ my-compositor/
 
 ```
 ┌────────────────────────────────────────────────────┐
-│                    FRONTEND (binary)                │
+│                    FRONTEND (binary)               │
 │  main.rs: parse args → load config → pick shell    │
 │  winit.rs: host window + render loop + input       │
 │  config.rs: [shell], [[startup]]                   │
 ├────────────────────────────────────────────────────┤
-│                    CORE (library)                   │
-│  ┌──────────┐  ┌────────────┐  ┌───────────────┐  │
+│                    CORE (library)                  │
+│  ┌──────────┐  ┌────────────┐  ┌────────────────┐  │
 │  │ Shell    │  │ Handlers   │  │ Grabs          │  │
 │  │ trait    │  │ compositor │  │ move_grab      │  │
 │  │ NullShell│  │ xdg_shell  │  │ resize_grab    │  │
 │  │ Context  │  │ seat etc   │  │                │  │
-│  └──────────┘  └────────────┘  └───────────────┘  │
+│  └──────────┘  └────────────┘  └────────────────┘  │
 │  ┌──────────────────────────────────────────────┐  │
 │  │ state.rs: Wayboard struct                    │  │
 │  │   DisplayHandle, Space, Seat,                │  │
@@ -57,10 +57,10 @@ my-compositor/
 │  │           → seat keyboard/pointer dispatch   │  │
 │  └──────────────────────────────────────────────┘  │
 ├────────────────────────────────────────────────────┤
-│                    SHELLS (plugins)                 │
+│                    SHELLS (plugins)                │
 │  shell-default: new_window → fullscreen            │
 │  (future) shell-tiling: BSP tree layout            │
-│  (future) shell-floating: stacking WM             │
+│  (future) shell-floating: stacking WM              │
 └────────────────────────────────────────────────────┘
 ```
 
@@ -77,12 +77,12 @@ The compositor is the server; applications are clients.
 ```
 Client                           Server (you)
   │                                  │
-  │── wl_compositor.create_surface──▶│  "I need a surface"
-  │◀────── wl_surface (id=7) ───────│  "Here you go"
-  │── xdg_wm_base.get_xdg_surface──▶│  "Make it an app window"
-  │◀─── xdg_toplevel (id=12) ──────│  "Here's your toplevel"
-  │── wl_surface.attach(buffer)─────▶│  "Here's pixels"
-  │── wl_surface.commit─────────────▶│  "Show it now!"
+  │── wl_compositor.create_surface ─▶│  "I need a surface"
+  │◀─────── wl_surface (id=7) ───────│  "Here you go"
+  │── xdg_wm_base.get_xdg_surface ──▶│  "Make it an app window"
+  │◀──── xdg_toplevel (id=12) ───────│  "Here's your toplevel"
+  │─── wl_surface.attach(buffer) ───▶│  "Here's pixels"
+  │─── wl_surface.commit ───────────▶│  "Show it now!"
 ```
 
 Key insight: the protocol is just messages. The compositor receives them
